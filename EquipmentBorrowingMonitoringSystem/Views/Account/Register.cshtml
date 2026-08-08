@@ -1,7 +1,7 @@
 @model EquipmentBorrowingMonitoringSystem.Models.User
 
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Create Account";
 }
 
 <div class="container mt-5">
@@ -22,80 +22,81 @@
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="FirstName"
-                                   class="form-label">
-                            </label>
-
-                            <input asp-for="FirstName"
-                                   class="form-control" />
-
+                            <label asp-for="FirstName" class="form-label"></label>
+                            <input asp-for="FirstName" class="form-control" />
                             <span asp-validation-for="FirstName"
-                                  class="text-danger">
-                            </span>
+                                  class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="LastName"
-                                   class="form-label">
-                            </label>
-
-                            <input asp-for="LastName"
-                                   class="form-control" />
-
+                            <label asp-for="LastName" class="form-label"></label>
+                            <input asp-for="LastName" class="form-control" />
                             <span asp-validation-for="LastName"
-                                  class="text-danger">
-                            </span>
+                                  class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="Email"
-                                   class="form-label">
-                            </label>
-
-                            <input asp-for="Email"
-                                   class="form-control" />
-
+                            <label asp-for="Email" class="form-label"></label>
+                            <input asp-for="Email" class="form-control" />
                             <span asp-validation-for="Email"
-                                  class="text-danger">
-                            </span>
+                                  class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="Username"
-                                   class="form-label">
-                            </label>
-
-                            <input asp-for="Username"
-                                   class="form-control" />
-
+                            <label asp-for="Username" class="form-label"></label>
+                            <input asp-for="Username" class="form-control" />
                             <span asp-validation-for="Username"
-                                  class="text-danger">
-                            </span>
+                                  class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="Password"
-                                   class="form-label">
-                            </label>
+                            <label asp-for="Password" class="form-label"></label>
 
                             <input asp-for="Password"
-                                   class="form-control" />
+                                   id="password"
+                                   class="form-control"
+                                   type="password" />
 
                             <span asp-validation-for="Password"
-                                  class="text-danger">
-                            </span>
+                                  class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ConfirmPassword"
+                                   class="form-label">
+                            </label>
+
+                            <input asp-for="ConfirmPassword"
+                                   id="confirmPassword"
+                                   class="form-control"
+                                   type="password" />
+
+                            <span asp-validation-for="ConfirmPassword"
+                                  class="text-danger"></span>
+                        </div>
+
+                        <div class="form-check mb-3">
+                            <input type="checkbox"
+                                   class="form-check-input"
+                                   id="showPassword"
+                                   onclick="togglePassword()">
+
+                            <label class="form-check-label"
+                                   for="showPassword">
+                                Show Password
+                            </label>
                         </div>
 
                         <button type="submit"
                                 class="btn btn-success w-100">
-                            Register
+                            Create Account
                         </button>
 
                     </form>
 
                     <div class="text-center mt-3">
                         <a asp-action="Login">
-                            Back to Login
+                            Already have an account? Login
                         </a>
                     </div>
 
@@ -108,4 +109,19 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        function togglePassword() {
+            const password = document.getElementById("password");
+            const confirmPassword = document.getElementById("confirmPassword");
+
+            if (password.type === "password") {
+                password.type = "text";
+                confirmPassword.type = "text";
+            } else {
+                password.type = "password";
+                confirmPassword.type = "password";
+            }
+        }
+    </script>
 }

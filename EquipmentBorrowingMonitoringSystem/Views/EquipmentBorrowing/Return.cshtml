@@ -1,0 +1,78 @@
+@model EquipmentBorrowingMonitoringSystem.Models.EquipmentBorrowing
+
+@{
+    ViewData["Title"] = "Return Equipment";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card shadow">
+                <div class="card-body">
+
+                    <h2 class="mb-4">Return Equipment</h2>
+
+                    <div class="alert alert-warning">
+                        Are you sure you want to mark this equipment as returned?
+                    </div>
+
+                    <dl class="row">
+                        <dt class="col-sm-5">Transaction Number</dt>
+                        <dd class="col-sm-7">@Model.TransactionNumber</dd>
+
+                        <dt class="col-sm-5">Borrower</dt>
+                        <dd class="col-sm-7">@Model.BorrowerName</dd>
+
+                        <dt class="col-sm-5">Equipment</dt>
+                        <dd class="col-sm-7">@Model.EquipmentName</dd>
+
+                        <dt class="col-sm-5">Quantity</dt>
+                        <dd class="col-sm-7">@Model.Quantity</dd>
+
+                        <dt class="col-sm-5">Borrow Date</dt>
+                        <dd class="col-sm-7">
+                            @Model.BorrowDateTime.ToString("MMM dd, yyyy hh:mm tt")
+                        </dd>
+
+                        <dt class="col-sm-5">Expected Return</dt>
+                        <dd class="col-sm-7">
+                            @Model.ExpectedReturnDate.ToString("MMM dd, yyyy")
+                        </dd>
+
+                        <dt class="col-sm-5">Status</dt>
+                        <dd class="col-sm-7">
+                            <span class="badge bg-warning text-dark">
+                                @Model.Status
+                            </span>
+                        </dd>
+                    </dl>
+
+                    <form asp-action="Return"
+                          asp-route-id="@Model.Id"
+                          method="post">
+
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="d-flex gap-2 mt-4">
+
+                            <button type="submit"
+                                    class="btn btn-success">
+                                Confirm Return
+                            </button>
+
+                            <a asp-action="Index"
+                               class="btn btn-secondary">
+                                Cancel
+                            </a>
+
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

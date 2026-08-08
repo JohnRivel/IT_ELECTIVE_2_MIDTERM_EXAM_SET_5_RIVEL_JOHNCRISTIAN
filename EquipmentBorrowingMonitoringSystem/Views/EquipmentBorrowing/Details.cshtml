@@ -1,0 +1,162 @@
+@model EquipmentBorrowingMonitoringSystem.Models.EquipmentBorrowing
+
+@{
+    ViewData["Title"] = "Borrowing Details";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+            <div class="card shadow">
+                <div class="card-body">
+
+                    <h2 class="mb-4">Borrowing Details</h2>
+
+                    <dl class="row">
+
+                        <dt class="col-sm-4">
+                            Transaction Number
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Model.TransactionNumber
+                        </dd>
+
+                        <dt class="col-sm-4">
+                            Borrower Name
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Model.BorrowerName
+                        </dd>
+
+                        <dt class="col-sm-4">
+                            Borrower Type
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Model.BorrowerType
+                        </dd>
+
+                        <dt class="col-sm-4">
+                            Student/Employee ID
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Model.BorrowerId
+                        </dd>
+
+                        <dt class="col-sm-4">
+                            Department/Course
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Model.DepartmentOrCourse
+                        </dd>
+
+                        <dt class="col-sm-4">
+                            Equipment Name
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Model.EquipmentName
+                        </dd>
+
+                        <dt class="col-sm-4">
+                            Equipment Category
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Model.EquipmentCategory
+                        </dd>
+
+                        <dt class="col-sm-4">
+                            Quantity
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Model.Quantity
+                        </dd>
+
+                        <dt class="col-sm-4">
+                            Borrow Date & Time
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Model.BorrowDateTime.ToString("MMM dd, yyyy hh:mm tt")
+                        </dd>
+
+                        <dt class="col-sm-4">
+                            Expected Return Date
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Model.ExpectedReturnDate.ToString("MMM dd, yyyy")
+                        </dd>
+
+                        <dt class="col-sm-4">
+                            Actual Return Date & Time
+                        </dt>
+                        <dd class="col-sm-8">
+                            @(Model.ActualReturnDateTime.HasValue
+                                ? Model.ActualReturnDateTime.Value.ToString("MMM dd, yyyy hh:mm tt")
+                                : "Not yet returned")
+                        </dd>
+
+                        <dt class="col-sm-4">
+                            Status
+                        </dt>
+                        <dd class="col-sm-8">
+                            @if (Model.Status == "Borrowed")
+                            {
+                                <span class="badge bg-warning text-dark">
+                                    Borrowed
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-success">
+                                    Returned
+                                </span>
+                            }
+                        </dd>
+
+                        <dt class="col-sm-4">
+                            Purpose
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Model.Purpose
+                        </dd>
+
+                        <dt class="col-sm-4">
+                            Notes
+                        </dt>
+                        <dd class="col-sm-8">
+                            @(string.IsNullOrWhiteSpace(Model.Notes)
+                                ? "None"
+                                : Model.Notes)
+                        </dd>
+
+                    </dl>
+
+                    <div class="d-flex gap-2 mt-4">
+
+                        <a asp-action="Edit"
+                           asp-route-id="@Model.Id"
+                           class="btn btn-warning">
+                            Edit
+                        </a>
+
+                        @if (Model.Status == "Borrowed")
+                        {
+                            <a asp-action="Return"
+                               asp-route-id="@Model.Id"
+                               class="btn btn-success">
+                                Return Equipment
+                            </a>
+                        }
+
+                        <a asp-action="Index"
+                           class="btn btn-secondary">
+                            Back to Monitoring
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
