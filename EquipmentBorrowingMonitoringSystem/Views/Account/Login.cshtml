@@ -1,0 +1,76 @@
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+
+            <div class="card shadow">
+                <div class="card-body">
+
+                    <h2 class="text-center mb-4">
+                        Equipment Borrowing System
+                    </h2>
+
+                    <h4 class="text-center mb-4">Login</h4>
+
+                    @if (ViewBag.Error != null)
+                    {
+                        <div class="alert alert-danger">
+                            @ViewBag.Error
+                        </div>
+                    }
+
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="alert alert-success">
+                            @TempData["Success"]
+                        </div>
+                    }
+
+                    <form asp-action="Login" method="post">
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Username
+                            </label>
+
+                            <input type="text"
+                                   name="username"
+                                   class="form-control"
+                                   required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Password
+                            </label>
+
+                            <input type="password"
+                                   name="password"
+                                   class="form-control"
+                                   required />
+                        </div>
+
+                        <button type="submit"
+                                class="btn btn-primary w-100">
+                            Login
+                        </button>
+
+                    </form>
+
+                    <div class="text-center mt-3">
+                        <span>Don't have an account?</span>
+
+                        <a asp-action="Register">
+                            Register
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
